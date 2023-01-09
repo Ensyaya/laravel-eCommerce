@@ -64,54 +64,56 @@
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
 
     <script>
+        const baseUrl = '/';
+        
+        function deleteQuestion(id, productId) {
+        sendRequest(`${baseUrl}admin/product-question/${id}`, 'DELETE', { productId });
+        }
+
+        function deleteReply(id, content) {
+        sendRequest(`${baseUrl}admin/product-reply/${id}`, 'DELETE');
+        }
+
+
+        async function sendRequest(url, method, data) {
+        try {
+            const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+            const headers = { 'X-CSRF-TOKEN': csrfToken };
+            const response = await axios({ method, url, headers, data });
+
+            $('.questionCount').html(response.data.questionAll)
+
+            showNotification(response.data.message);
+        } catch (error) {
+            console.error(error);
+            showNotification('Something went wrong', 'error');
+        }
+        }
+
+        function showNotification(message, type = 'success') {
+        Swal.fire({
+            position: 'top',
+            icon: type,
+            title: message,
+            showConfirmButton: false,
+            customClass: 'swal-wide',
+            timer: 1500
+        });
+        }
+
         $(".deleteQuestion").click(function() {
             const id = $(this).data("id");
-            const productId = $('#productId').val();
-
-            var token = document.head.querySelector('meta[name="csrf-token"]');
-            window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-
-            axios.post(`/product-question/destroy/${id}`,{productId}).then((res) => {
-                console.log(res);
-                Swal.fire({
-                    position: 'top',
-                    icon: 'success',
-                    title: res.data.message,
-                    showConfirmButton: false,
-                    customClass: 'swal-wide',
-                    timer: 1500
-                })
+            let productId = $('#productId').val();
+            deleteQuestion(id, productId);
             $(this).closest(`.question-item${id}`).remove();
-
-            $('.questionCount').html(res.data.questionAll)
-
-            }).catch((err) => {
-                console.log("err", err)
-                swal.fire("", "something went wrong", "error")
-            })
         })
+
         $(".deleteReply").click(function() {
             const id = $(this).data("id");
-            
-            var token = document.head.querySelector('meta[name="csrf-token"]');
-            window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-
-            axios.post(`/product-reply/destroy/${id}`).then((res) => {
-                Swal.fire({
-                    position: 'top',
-                    icon: 'success',
-                    title: res.data.message,
-                    showConfirmButton: false,
-                    customClass: 'swal-wide',
-                    timer: 1500
-                })
+            deleteReply(id);
             $(this).closest(`.reply-item${id}`).remove();
-
-            }).catch((err) => {
-                console.log("err", err)
-                swal.fire("", "bir hata oluştu", "error")
-            })
         })
+
     </script>
 
 

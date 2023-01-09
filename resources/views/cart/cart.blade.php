@@ -129,7 +129,7 @@
         var token = document.head.querySelector('meta[name="csrf-token"]');
         window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 
-        axios.delete(`/cart/delete/${id}`)
+        axios.delete(`/cart/${id}`)
             .then((res) => {
             Swal.fire({
                 position: 'top',

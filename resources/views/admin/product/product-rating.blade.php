@@ -45,30 +45,42 @@
         <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     </slot>
     <script>
+        const baseUrl = '/';
+
+        function deleteRating(id, productId) {
+        sendRequest(`${baseUrl}admin/product-rating/${id}`, 'DELETE', { productId });
+        }
+
+        async function sendRequest(url, method, data) {
+        try {
+            const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
+            const headers = { 'X-CSRF-TOKEN': csrfToken };
+            const response = await axios({ method, url, headers, data });
+
+            $('.ratingCount').html(response.data.ratingCount)
+            showNotification(response.data.message);
+        } catch (error) {
+            console.error(error);
+            showNotification('Something went wrong', 'error');
+        }
+        }
+
+        function showNotification(message, type = 'success') {
+        Swal.fire({
+            position: 'top',
+            icon: type,
+            title: message,
+            showConfirmButton: false,
+            customClass: 'swal-wide',
+            timer: 1500
+        });
+        }
+
         $(".deleteRating").click(function() {
             const id = $(this).data("id");
-            const productId = $('#productId').val();
-            console.log(productId);
-            
-            var token = document.head.querySelector('meta[name="csrf-token"]');
-            window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
-
-            axios.post(`/product-rating/destroy/${id}`,{productId}).then((res) => {
-                Swal.fire({
-                    position: 'top',
-                    icon: 'success',
-                    title: res.data.message,
-                    showConfirmButton: false,
-                    customClass: 'swal-wide',
-                    timer: 1500
-                })
+            let productId = $('#productId').val();
+            deleteRating(id, productId);
             $(this).closest(`.rating-item${id}`).remove();
-            $('.ratingCount').html(res.data.ratingCount)
-
-            }).catch((err) => {
-                console.log("err", err)
-                swal.fire("", "something went wrong", "error")
-            })
         })
     </script>
 

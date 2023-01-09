@@ -160,8 +160,8 @@
                             </div>
                         </div>
                     </div>
-                    @foreach ($question->replies as $reply)
                     <div id="reply-parent-div{{$question->id}}">
+                    @foreach ($question->replies as $reply)
                         <article
                             class="reply-item{{$reply->id}} pb-3 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg ">
                             <footer class="flex justify-between items-center mb-2">
@@ -179,8 +179,8 @@
                             </footer>
                             <p class="text-gray-500 ml-3 ">{{$reply->content}}</p>
                         </article>
+                        @endforeach
                     </div>
-                    @endforeach
                 </div>
                 @endforeach
             </div>
@@ -197,63 +197,63 @@
                         class="ratingCount">{{$ratingAll}}</span>)</h2>
             </div>
             @if ($isProductRating < 1 && $isOrdered || auth()->user()->type == 'admin')
-            <div id="post-rate-div">
-                <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200">
-                    <label for="content" class="sr-only">Your Rating</label>
-                    <textarea id="rate-content" rows="3"
-                        class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none"
-                        placeholder="Write a question..." required></textarea>
+                <div id="post-rate-div">
+                    <div class="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200">
+                        <label for="content" class="sr-only">Your Rating</label>
+                        <textarea id="rate-content" rows="3"
+                            class="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none"
+                            placeholder="Write a question..." required></textarea>
+                    </div>
+                    <div class="mb-6">
+                        <label for="rate" class="mb-2 font-medium text-gray-900">Your Rate</label>
+                        <select id="rate-num"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 ">
+                            <option name="rate" value="1">1</option>
+                            <option name="rate" value="2">2</option>
+                            <option name="rate" value="3">3</option>
+                            <option name="rate" value="4">4</option>
+                            <option name="rate" value="5">5</option>
+                        </select> /5
+                    </div>
+                    <button type="submit" data-id="{{$product->id}}"
+                        class=" text-white bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  px-5 py-2.5 text-center mr-2 createRating">
+                        <i class="fa-solid fa-comment"></i> Post rating</button>
                 </div>
-                <div class="mb-6">
-                    <label for="rate" class="mb-2 font-medium text-gray-900">Your Rate</label>
-                    <select id="rate-num"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 ">
-                        <option name="rate" value="1">1</option>
-                        <option name="rate" value="2">2</option>
-                        <option name="rate" value="3">3</option>
-                        <option name="rate" value="4">4</option>
-                        <option name="rate" value="5">5</option>
-                    </select> /5
+                @endif
+                <div id="rate-parent-div">
+                    @foreach ($ratings as $rating)
+                    <article class="rating-item{{$rating->id}} p-6 text-base bg-white rounded-lg ">
+                        <footer class="flex justify-between items-center mb-2">
+                            <div class="flex items-center">
+                                <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
+                                        class="mr-2 w-6 h-6 rounded-full"
+                                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                        alt="Michael Gough"><strong>{{$rating->user_name}}</strong></p>
+                                <p class="text-sm text-gray-600 "><time pubdate datetime="2022-02-08"
+                                        title="February 8th, 2022">{{$rating->created_at}}</time></p>
+                                <svg fill="currentColor" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2" class="ml-2 w-4 h-4 text-yellow-500"
+                                    viewBox="0 0 24 24">
+                                    <path
+                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
+                                    </path>
+                                </svg>
+                                <p class="ml-2 mt-0.5 text-sm font-bold text-gray-900">{{$rating->rate}}</p>
+                            </div>
+                            <input type="hidden" value="{{$product->id}}" id="productId">
+                            <button data-id="{{$rating->id}}"
+                                class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 deleteRating"
+                                type="button"><i class="fa-solid fa-trash"></i>
+                            </button>
+                        </footer>
+                        <p class="text-gray-500 mb-8 ml-3">{{$rating->content}}</p>
+                    </article>
+                    @endforeach
                 </div>
-                <button type="submit" data-id="{{$product->id}}"
-                    class=" text-white bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg  px-5 py-2.5 text-center mr-2 createRating">
-                    <i class="fa-solid fa-comment"></i> Post rating</button>
-            </div>
-            @endif
-            <div id="rate-parent-div">
-                @foreach ($ratings as $rating)
-                <article class="rating-item{{$rating->id}} p-6 text-base bg-white rounded-lg ">
-                    <footer class="flex justify-between items-center mb-2">
-                        <div class="flex items-center">
-                            <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                    class="mr-2 w-6 h-6 rounded-full"
-                                    src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
-                                    alt="Michael Gough"><strong>{{$rating->user_name}}</strong></p>
-                            <p class="text-sm text-gray-600 "><time pubdate datetime="2022-02-08"
-                                    title="February 8th, 2022">{{$rating->created_at}}</time></p>
-                            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round"
-                                stroke-linejoin="round" stroke-width="2" class="ml-2 w-4 h-4 text-yellow-500"
-                                viewBox="0 0 24 24">
-                                <path
-                                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z">
-                                </path>
-                            </svg>
-                            <p class="ml-2 mt-0.5 text-sm font-bold text-gray-900">{{$rating->rate}}</p>
-                        </div>
-                        <input type="hidden" value="{{$product->id}}" id="productId">
-                        <button data-id="{{$rating->id}}"
-                            class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 deleteRating"
-                            type="button"><i class="fa-solid fa-trash"></i>
-                        </button>
-                    </footer>
-                    <p class="text-gray-500 mb-8 ml-3">{{$rating->content}}</p>
-                </article>
-                @endforeach
-            </div>
 
-            <div class="flex justify-end mb-10 mt-5">
-                {{$ratings->links()}}
-            </div>
+                <div class="flex justify-end mb-10 mt-5">
+                    {{$ratings->links()}}
+                </div>
         </div>
     </section>
 
@@ -269,27 +269,27 @@
         sendRequest(`${baseUrl}cart/${id}`, 'POST');
         }
         function createQuestion(id, content) {
-        sendRequest(`${baseUrl}product-question/create/${id}`, 'POST', { content });
-        }
-
-        function deleteQuestion(id, productId) {
-        sendRequest(`${baseUrl}product-question/destroy/${id}`, 'POST', { productId });
+        sendRequest(`${baseUrl}product-question/${id}`, 'POST', { content });
         }
 
         function createReply(id, content) {
-        sendRequest(`${baseUrl}product-replies/create/${id}`, 'POST', { content });
-        }
-
-        function deleteReply(id, content) {
-        sendRequest(`${baseUrl}product-reply/destroy/${id}`, 'POST');
+        sendRequest(`${baseUrl}admin/product-reply/${id}`, 'POST', { content });
         }
 
         function createRating(id, content, rate) {
-        sendRequest(`${baseUrl}product-rating/create/${id}`, 'POST', { content, rate });
+        sendRequest(`${baseUrl}product-rating/${id}`, 'POST', { content, rate });
+        }
+
+        function deleteQuestion(id, productId) {
+        sendRequest(`${baseUrl}admin/product-question/${id}`, 'DELETE', { productId });
+        }
+
+        function deleteReply(id, content) {
+        sendRequest(`${baseUrl}admin/product-reply/${id}`, 'DELETE');
         }
 
         function deleteRating(id, productId) {
-        sendRequest(`${baseUrl}product-rating/destroy/${id}`, 'POST', { productId });
+        sendRequest(`${baseUrl}admin/product-rating/${id}`, 'DELETE', { productId });
         }
 
         async function sendRequest(url, method, data) {
