@@ -67,11 +67,11 @@
         const baseUrl = '/';
         
         function deleteQuestion(id, productId) {
-        sendRequest(`${baseUrl}admin/product-question/${id}`, 'DELETE', { productId });
+        sendRequest(`${baseUrl}admin/product/question/${id}`, 'DELETE', { productId });
         }
 
         function deleteReply(id, content) {
-        sendRequest(`${baseUrl}admin/product-reply/${id}`, 'DELETE');
+        sendRequest(`${baseUrl}admin/product/reply/${id}`, 'DELETE');
         }
 
 

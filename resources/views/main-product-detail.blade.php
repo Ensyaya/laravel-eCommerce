@@ -269,27 +269,27 @@
         sendRequest(`${baseUrl}cart/${id}`, 'POST');
         }
         function createQuestion(id, content) {
-        sendRequest(`${baseUrl}product-question/${id}`, 'POST', { content });
+        sendRequest(`${baseUrl}product/question/${id}`, 'POST', { content });
         }
 
         function createReply(id, content) {
-        sendRequest(`${baseUrl}admin/product-reply/${id}`, 'POST', { content });
+        sendRequest(`${baseUrl}admin/product/reply/${id}`, 'POST', { content });
         }
 
         function createRating(id, content, rate) {
-        sendRequest(`${baseUrl}product-rating/${id}`, 'POST', { content, rate });
+        sendRequest(`${baseUrl}product/rating/${id}`, 'POST', { content, rate });
         }
 
         function deleteQuestion(id, productId) {
-        sendRequest(`${baseUrl}admin/product-question/${id}`, 'DELETE', { productId });
+        sendRequest(`${baseUrl}admin/product/question/${id}`, 'DELETE', { productId });
         }
 
         function deleteReply(id, content) {
-        sendRequest(`${baseUrl}admin/product-reply/${id}`, 'DELETE');
+        sendRequest(`${baseUrl}admin/product/reply/${id}`, 'DELETE');
         }
 
         function deleteRating(id, productId) {
-        sendRequest(`${baseUrl}admin/product-rating/${id}`, 'DELETE', { productId });
+        sendRequest(`${baseUrl}admin/product/rating/${id}`, 'DELETE', { productId });
         }
 
         async function sendRequest(url, method, data) {

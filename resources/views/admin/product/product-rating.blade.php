@@ -48,7 +48,7 @@
         const baseUrl = '/';
 
         function deleteRating(id, productId) {
-        sendRequest(`${baseUrl}admin/product-rating/${id}`, 'DELETE', { productId });
+        sendRequest(`${baseUrl}admin/product/rating/${id}`, 'DELETE', { productId });
         }
 
         async function sendRequest(url, method, data) {

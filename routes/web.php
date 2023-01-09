@@ -39,10 +39,10 @@ Route::middleware(['auth', 'isAdmin', 'isActiveDisc', 'isQuantity'])->prefix('ad
     Route::get('order', [AdminOrderController::class, 'index'])->name('admin-order.index');
     Route::post('order/{id}', [AdminOrderController::class, 'update'])->name('admin-order.update');
 
-    Route::post('product-reply/{id}', [ProductRepliesController::class, 'create'])->name('product-replies.create');
-    Route::delete('product-question/{id}', [ProductQuestionController::class, 'destroy'])->name('product-question.destroy');
-    Route::delete('product-rating/{id}', [ProductRatingController::class, 'destroy'])->name('product-rating.destroy');
-    Route::delete('product-reply/{id}', [ProductRepliesController::class, 'destroy'])->name('product-reply.destroy');
+    Route::post('product/reply/{id}', [ProductRepliesController::class, 'create'])->name('product-replies.create');
+    Route::delete('product/question/{id}', [ProductQuestionController::class, 'destroy'])->name('product-question.destroy');
+    Route::delete('product/rating/{id}', [ProductRatingController::class, 'destroy'])->name('product-rating.destroy');
+    Route::delete('product/reply/{id}', [ProductRepliesController::class, 'destroy'])->name('product-reply.destroy');
 
     Route::get('product/{id}/ratings', [ProductRatingController::class, 'index'])->name('product-rating.index');
     Route::get('product/{id}/questions', [ProductQuestionController::class, 'index'])->name('product-question.index');
@@ -64,8 +64,8 @@ Route::middleware(['isActiveDisc', 'auth', 'isQuantity'])->group(function () {
     Route::get('order', [OrderController::class, 'index'])->name('order.index');
     Route::post('order/{id}', [OrderController::class, 'create'])->name('order.create');
 
-    Route::post('product-question/{id}', [ProductQuestionController::class, 'create'])->name('product-question.create');
-    Route::post('product-rating/{id}', [ProductRatingController::class, 'create'])->name('product-rating.create');
+    Route::post('product/question/{id}', [ProductQuestionController::class, 'create'])->name('product-question.create');
+    Route::post('product/rating/{id}', [ProductRatingController::class, 'create'])->name('product-rating.create');
 });
 
 
