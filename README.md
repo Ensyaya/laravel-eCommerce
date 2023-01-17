@@ -15,9 +15,8 @@ Laravel , jQuery ve Tailwind CSS ile yazılmış full-stack bir e-ticaret sistem
 | Authentication | [laravel/breeze](https://laravel.com/docs/9.x/starter-kits#laravel-breeze) |
 | Filtreleme | [Laravel](https://laravel.com/docs/9.x/eloquent-relationships#inline-relationship-existence-queries) |
 | Pagination | [Laravel](https://laravel.com/docs/9.x/eloquent-resources#pagination) |
-| Comment/Subcomment | [JQuery](https://jquery.com/)/[Laravel](https://laravel.com) |
+| Soru/Cevap/Değerlendirme | [JQuery](https://jquery.com/)/[Laravel](https://laravel.com) |
 | Sipariş durumu |   [Laravel](https://laravel.com/)    |
-| Ürün değerlendirme | [Laravel](https://laravel.com/)    |
 | Alert/Notification |[Sweetalert2](https://sweetalert2.github.io/#examples) |
 | Fotoğraf yükleme | [cloudinary](https://cloudinary.com/)  |
 | Style | [Tailwind CSS](https://tailwindcss.com/)
