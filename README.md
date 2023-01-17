@@ -16,6 +16,7 @@ Laravel , jQuery ve Tailwind CSS ile yazılmış full-stack bir e-ticaret sistem
 | Filtreleme | [Laravel](https://laravel.com/docs/9.x/eloquent-relationships#inline-relationship-existence-queries) |
 | Pagination | [Laravel](https://laravel.com/docs/9.x/eloquent-resources#pagination) |
 | Soru/Cevap/Değerlendirme | [JQuery](https://jquery.com/)/[Laravel](https://laravel.com) |
+| Sepet işlemleri | [JQuery](https://jquery.com/)/[Laravel](https://laravel.com) |
 | Sipariş durumu |   [Laravel](https://laravel.com/)    |
 | Alert/Notification |[Sweetalert2](https://sweetalert2.github.io/#examples) |
 | Fotoğraf yükleme | [cloudinary](https://cloudinary.com/)  |
