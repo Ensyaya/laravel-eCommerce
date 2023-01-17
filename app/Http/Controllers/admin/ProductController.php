@@ -132,7 +132,7 @@ class ProductController extends Controller
     protected function updateImage(Request $request, $product)
     {
         if ($request->hasFile('image')) {
-            if ($product->image) {
+            if ($product->image_id) {
                 $deleted = $product->image_id;
                 Cloudinary::destroy($deleted);
             }
@@ -146,7 +146,7 @@ class ProductController extends Controller
             ]);
         }
         if ($request->hasFile('image2')) {
-            if ($product->image2) {
+            if ($product->image_id2) {
                 $deleted = $product->image_id2;
                 Cloudinary::destroy($deleted);
             }
@@ -160,7 +160,7 @@ class ProductController extends Controller
             ]);
         }
         if ($request->hasFile('image3')) {
-            if ($product->image3) {
+            if ($product->image_id3) {
                 $deleted = $product->image_id3;
                 Cloudinary::destroy($deleted);
             }

@@ -48,8 +48,10 @@
                             class="font-semibold stepUp"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     @if ($item->products->discounted_price)
-                    <span class="text-center w-1/5 font-semibold text-sm">$ <span
-                            id="discountPrice{{$item->products->id}}">{{$item->products->discounted_price}}</span>
+                    <span class="text-center w-1/5 font-semibold text-sm">
+                        <del>${{$item->products->price}}
+                            </del> 
+                         $ <span id="discountPrice{{$item->products->id}}">{{$item->products->discounted_price}}</span>
                     </span>
                     <span class="text-center w-1/5 font-semibold text-sm">$ <span
                             id="cartItemIncludeDiscountTotal{{$item->products->id}}">{{$item->products->discounted_price

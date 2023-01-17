@@ -23,7 +23,7 @@
         <div class="m-2 min-w-0">
             <div class="rounded-lg shadow-lg bg-white max-w-sm">
                 <a href="{{ route('product.detail', $product->slug) }}">
-                    <img class="rounded-t-lg object-cover h-80 w-96" src="{{asset($product->image)}}"
+                    <img class="rounded-t-lg object-fit h-80 w-96" src="{{asset($product->image)}}"
                         alt="{{$product->title}}" />
                 </a>
                 <div class="p-6">

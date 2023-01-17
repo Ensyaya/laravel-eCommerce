@@ -21,12 +21,12 @@ class ProductUpdateRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules($id)
+    public function rules()
     {
         return [
             'title' => 'required | min:3 | max:255 ',
             'description' => ' min:3 | max:1250 | nullable',
-            'image' => 'image | required | max:1024 |mimes:jpg,png,jpeg ',
+            'image' => 'image | nullable | max:2048 |mimes:jpg,png,jpeg ',
             'image2' => 'image | nullable | max:1024 |mimes:jpg,png,jpeg ',
             'image3' => 'image | nullable | max:1024 |mimes:jpg,png,jpeg ',
             'price' => 'required | min:1',

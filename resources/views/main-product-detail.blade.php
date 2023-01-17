@@ -97,8 +97,8 @@
                         <footer class="flex justify-between items-center mb-2">
                             <div class="flex items-center">
                                 <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                        class="mr-2 w-6 h-6 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                        class="mr-2 w-8 h-8 rounded-full"
+                                        src="https://res.cloudinary.com/dzexlugxs/image/upload/v1673975918/ecom-laravel/user_d001px.png"
                                         alt="Michael Gough"><strong>{{$question->user_name}}</strong></p>
                                 <p class="text-sm text-gray-600 "><time pubdate>{{$question->created_at}}</time></p>
                             </div>
@@ -161,14 +161,14 @@
                         </div>
                     </div>
                     <div id="reply-parent-div{{$question->id}}">
-                    @foreach ($question->replies as $reply)
+                        @foreach ($question->replies as $reply)
                         <article
                             class="reply-item{{$reply->id}} pb-3 mb-6 ml-6 lg:ml-12 text-base bg-white rounded-lg ">
                             <footer class="flex justify-between items-center mb-2">
                                 <div class="flex items-center">
                                     <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                            class="mr-2 w-6 h-6 rounded-full"
-                                            src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                            class="mr-2 w-8 h-8 rounded-full"
+                                            src="https://res.cloudinary.com/dzexlugxs/image/upload/v1673975921/ecom-laravel/admin_w7w6ln.webp"
                                             alt="Jese Leos">{{$reply->user_name}}</p>
                                     <p class="text-sm text-gray-600 "><time>{{$reply->created_at}}</time></p>
                                 </div>
@@ -226,8 +226,8 @@
                         <footer class="flex justify-between items-center mb-2">
                             <div class="flex items-center">
                                 <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                        class="mr-2 w-6 h-6 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                        class="mr-2 w-8 h-8 rounded-full"
+                                        src="https://res.cloudinary.com/dzexlugxs/image/upload/v1673975918/ecom-laravel/user_d001px.png"
                                         alt="Michael Gough"><strong>{{$rating->user_name}}</strong></p>
                                 <p class="text-sm text-gray-600 "><time pubdate datetime="2022-02-08"
                                         title="February 8th, 2022">{{$rating->created_at}}</time></p>
@@ -240,11 +240,14 @@
                                 </svg>
                                 <p class="ml-2 mt-0.5 text-sm font-bold text-gray-900">{{$rating->rate}}</p>
                             </div>
+                            @if (auth()->user()->type == 'admin')
+
                             <input type="hidden" value="{{$product->id}}" id="productId">
                             <button data-id="{{$rating->id}}"
                                 class="inline-flex items-center p-2 text-sm font-medium text-center text-gray-400 bg-white rounded-lg hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-50 deleteRating"
                                 type="button"><i class="fa-solid fa-trash"></i>
                             </button>
+                            @endif
                         </footer>
                         <p class="text-gray-500 mb-8 ml-3">{{$rating->content}}</p>
                     </article>
@@ -344,8 +347,8 @@
             <footer class="flex justify-between items-center mb-2 m-6 text-base bg-white rounded-lg">
                     <div class="flex items-center">
                         <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                class="mr-2 w-6 h-6 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                class="mr-2 w-8 h-8 rounded-full"
+                                src="https://res.cloudinary.com/dzexlugxs/image/upload/v1673975918/ecom-laravel/user_d001px.png"
                                 alt="Michael Gough"><span class='question-user-name'></span></p>
                         <p class="text-sm text-gray-600 "><time pubdate class="question-created-at"></time></p>
                     </div>
@@ -381,8 +384,8 @@
                         <footer class="flex justify-between items-center mb-2">
                             <div class="flex items-center">
                                 <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                        class="mr-2 w-6 h-6 rounded-full"
-                                        src="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
+                                        class="mr-2 w-8 h-8 rounded-full"
+                                        src="https://res.cloudinary.com/dzexlugxs/image/upload/v1673975921/ecom-laravel/admin_w7w6ln.webp"
                                         alt="Jese Leos"><span class="reply-user-name"></span></p>
                                 <p class="text-sm text-gray-600 "><time class="reply-created-at"></time></p>
                             </div>
@@ -396,7 +399,6 @@
                 `;
         $(`#reply-parent-div${id}`).prepend(newReply);
         });
-
         $('.createRating').click(function() {
         const id = $(this).data('id');
         const content = $('#rate-content').val();
@@ -407,8 +409,8 @@
             <footer class="flex justify-between items-center mb-2 m-6 text-base bg-white rounded-lg">
                     <div class="flex items-center">
                         <p class="inline-flex items-center mr-3 text-sm text-gray-900 "><img
-                                class="mr-2 w-6 h-6 rounded-full"
-                                src="https://flowbite.com/docs/images/people/profile-picture-2.jpg"
+                                class="mr-2 w-8 h-8 rounded-full"
+                                src="https://res.cloudinary.com/dzexlugxs/image/upload/v1673975918/ecom-laravel/user_d001px.png"
                                 alt="Michael Gough"><span class='rating-user-name'></span></p>
                         <p class="text-sm text-gray-600 "><time pubdate class="rating-created-at"></time></p>
                         <svg fill="currentColor" stroke="currentColor" stroke-linecap="round"
