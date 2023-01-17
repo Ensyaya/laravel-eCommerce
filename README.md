@@ -1,6 +1,6 @@
 # eCommerce
 
-Laravel , jQuery ve Tailwind CSS ile yazılmış full-stack bir e-ticaret sistemi.
+Laravel , jQuery ve Tailwind CSS ile yazılmış full-stack bir e-ticaret sistemi. 
 
 ## Tech Stack
 **Backend**: [Laravel](https://laravel.com/)
